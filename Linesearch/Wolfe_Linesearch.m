@@ -18,7 +18,7 @@ while 1
         end
     end
    
-    if f_new <= problem.compute_f(x) + c_1_ls * problem.compute_g(x)' * d
+    if f_new <= problem.compute_f(x) + c_1_ls * alpha * problem.compute_g(x)' * d
         alpha_low = alpha;
     else
         alpha_high = alpha;
