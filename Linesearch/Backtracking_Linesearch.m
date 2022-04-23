@@ -11,7 +11,7 @@ g = problem.compute_g(x);
 while problem.compute_f(x+alpha*d) > f + c_1*alpha*g'*d
     alpha = tau*alpha;
     if alpha < eps
-        disp('Error in Line search - alpha close to working precision');
+        disp('Error in Line search - alpha close to working precision')
         if problem.compute_f(x + alpha*d) > f
              break
         end

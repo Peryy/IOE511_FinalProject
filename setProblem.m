@@ -41,9 +41,9 @@ switch problem.name
 
     case 'Rosenbrock_2'
         
-        problem.compute_f = @rosen2_func;
-        problem.compute_g = @rosen2_grad;
-        problem.compute_H = @rosen2_Hess;
+        problem.compute_f = @rosen_func;
+        problem.compute_g = @rosen_grad;
+        problem.compute_H = @rosen_Hess;
 
     case 'Rosenbrock_100'
         
