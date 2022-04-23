@@ -24,6 +24,7 @@ switch problem.name
     case 'Exponential_10'
         
         problem.x0 = [1;zeros(9,1)];
+        problem.n = length(problem.x0);
         problem.compute_f = @Exponential_10_func;
         problem.compute_g = @Exponential_10_grad;
         problem.compute_H = @Exponential_10_Hess;
@@ -31,6 +32,7 @@ switch problem.name
     case 'Exponential_1000'
         
         problem.x0 = [1;zeros(999,1)];
+        problem.n = length(problem.x0);
         problem.compute_f = @Exponential_10_func;
         problem.compute_g = @Exponential_10_grad;
         problem.compute_H = @Exponential_10_Hess;
@@ -38,6 +40,7 @@ switch problem.name
     case 'Datafit2'
         
         problem.x0 = [1;1];
+        problem.n = length(problem.x0);
         problem.compute_f = @Datafit2_func;
         problem.compute_g = @Datafit2_grad;
         problem.compute_H = @Datafit2_Hess;
@@ -45,6 +48,7 @@ switch problem.name
     case 'Rosenbrock_2'
         
         problem.x0 = [-1.2;1];
+        problem.n = length(problem.x0);
         problem.compute_f = @rosen_func;
         problem.compute_g = @rosen_grad;
         problem.compute_H = @rosen_Hess;
@@ -52,6 +56,7 @@ switch problem.name
     case 'Rosenbrock_100'
         
         problem.x0 = [-1.2;ones(99)];
+        problem.n = length(problem.x0);
         problem.compute_f = @rosen_func;
         problem.compute_g = @rosen_grad;
         problem.compute_H = @rosen_Hess;
@@ -71,6 +76,7 @@ switch problem.name
     case 'quad_10_10'
         
         problem.x0 = 20*rand(10,1)-10;
+        problem.n = length(problem.x0);
         problem.compute_f = @quad_10_10_func;
         problem.compute_g = @quad_10_10_grad;
         problem.compute_H = @quad_10_10_Hess;  
@@ -78,6 +84,7 @@ switch problem.name
     case 'quad_1000_10'
         
         problem.x0 = 20*rand(1000,1)-10;
+        problem.n = length(problem.x0);
         problem.compute_f = @quad_1000_10_func;
         problem.compute_g = @quad_1000_10_grad;
         problem.compute_H = @quad_1000_10_Hess;  
@@ -85,6 +92,7 @@ switch problem.name
     case 'quad_10_1000'
         
         problem.x0 = 20*rand(10,1)-10;
+        problem.n = length(problem.x0);
         problem.compute_f = @quad_10_1000_func;
         problem.compute_g = @quad_10_1000_grad;
         problem.compute_H = @quad_10_1000_Hess;  
@@ -92,6 +100,7 @@ switch problem.name
     case 'quad_1000_1000'
         
         problem.x0 = 20*rand(1000,1)-10;
+        problem.n = length(problem.x0);
         problem.compute_f = @quad_1000_1000_func;
         problem.compute_g = @quad_1000_1000_grad;
         problem.compute_H = @quad_1000_1000_Hess;  
@@ -99,6 +108,7 @@ switch problem.name
     case 'genhumps_5'
         
         problem.x0 = [-506.2;506.2*ones(4,1)];
+        problem.n = length(problem.x0);
         problem.compute_f = @genhumps_5_func;
         problem.compute_g = @genhumps_5_grad;
         problem.compute_H = @genhumps_5_Hess;  
@@ -106,6 +116,7 @@ switch problem.name
     case 'quartic_1'
         
         problem.x0 = [cos(70);sin(70);cos(70);sin(70)];
+        problem.n = length(problem.x0);
         problem.compute_f = @quartic_1_func;
         problem.compute_g = @quartic_1_grad;
         problem.compute_H = @quartic_1_Hess;  
@@ -113,6 +124,7 @@ switch problem.name
     case 'quartic_2'
         
         problem.x0 = [cos(70);sin(70);cos(70);sin(70)];
+        problem.n = length(problem.x0);
         problem.compute_f = @quartic_2_func;
         problem.compute_g = @quartic_2_grad;
         problem.compute_H = @quartic_2_Hess;        
