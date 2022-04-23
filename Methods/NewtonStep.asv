@@ -22,19 +22,12 @@ switch method.options.step_type
         H_new = problem.compute_H(x_new);
 
     case 'Backtracking'
-        alpha = Backtracking_Linesearch(x,d,problem,method);
+        alpha = Back
         x_new = x + alpha*d;
         f_new = problem.compute_f(x_new);
         g_new = problem.compute_g(x_new);
         H_new = problem.compute_H(x_new);
 
-    case 'Wolfe'
-        alpha = Wolfe_Linesearch(x,d,problem,method);
-        x_new = x + alpha*d;
-        f_new = problem.compute_f(x_new);
-        g_new = problem.compute_g(x_new);
-        H_new = problem.compute_H(x_new);
-        
     case 'Modified Backtracking'
         % direction modification
         beta = 10^-6;

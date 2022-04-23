@@ -26,12 +26,6 @@ switch problem.name
         problem.compute_f = @Exponential_10_func;
         problem.compute_g = @Exponential_10_grad;
         problem.compute_H = @Exponential_10_Hess;
-    
-    case 'Exponential_1000'
-
-        problem.compute_f = @Exponential_10_func;
-        problem.compute_g = @Exponential_10_grad;
-        problem.compute_H = @Exponential_10_Hess;
 
     case 'Datafit2'
 
@@ -39,13 +33,13 @@ switch problem.name
         problem.compute_g = @Datafit2_grad;
         problem.compute_H = @Datafit2_Hess;
 
-    case 'Rosenbrock_2'
+    case 'Rosenbrock2'
         
         problem.compute_f = @rosen2_func;
         problem.compute_g = @rosen2_grad;
         problem.compute_H = @rosen2_Hess;
 
-    case 'Rosenbrock_100'
+    case 'Rosenbrock100'
         
         problem.compute_f = @rosen_func;
         problem.compute_g = @rosen_grad;

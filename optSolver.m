@@ -15,7 +15,10 @@ function [x,f,k,delta,norm_g] = optSolver(problem,method,options)
 x = problem.x0;
 f = problem.compute_f(x);
 g = problem.compute_g(x);
-if strcmp(method.name,'BFGS') || strcmp(method.name,'L_BFGS') || strcmp(method.name,'TRSR1CG')
+if strcmp(method.name,'BFGS') || strcmp(method.name,'BFGSW') ...
+    || strcmp(method.name,'L_BFGS')|| strcmp(method.name,'TRSR1CG')...
+    || strcmp(method.name,'DFP') || strcmp(method.name,'DFPW')
+        
     H = eye(size(g,1));
 else
     H = problem.compute_H(x);
@@ -43,56 +46,48 @@ while k < options.max_iterations && norm_g >= options.term_tol*max(1,norm_g_0)
     % take step according to a chosen method
     switch method.name
         case 'GradientDescent'
-%             if mod(k,10) == 0
-%                 fprintf('%15s %15s %15s %15s %15s\n','Iteration','Func val','Norm Grad','alpha','Norm d')
-%             end
-            %fprintf('%15s %15.5e %15.5e',k,f,norm_g);    
             [x_new,f_new,g_new,H_new,d,alpha] = GDStep(x,f,g,H,problem,method,options);
-            %fprintf(' %15.5e %15.5e\n',alpha,norm(d,inf));
-            Y_new = Y;S_new =S;
-
-        case 'Newton'
-%             if mod(k,10) == 0
-%                 fprintf('%15s %15s %15s %15s %15s\n','Iteration','Func val','Norm Grad','alpha','Norm d')
-%             end
-            %fprintf('%15s %15.5e %15.5e',k,f,norm_g);    
-            [x_new,f_new,g_new,H_new,d,alpha] = NewtonStep(x,f,g,H,problem,method,options);
-            %fprintf(' %15.5e %15.5e\n',alpha,norm(d,inf));
             Y_new = Y;S_new =S;
             
-        case 'BFGS'
-%             if mod(k,10) == 0
-%                 fprintf('%15s %15s %15s %15s %15s\n','Iteration','Func val','Norm Grad','alpha','Norm d')
-%             end
-            %fprintf('%15s %15.5e %15.5e',k,f,norm_g);    
+        case 'GradientDescentW'
+            [x_new,f_new,g_new,H_new,d,alpha] = GDStep(x,f,g,H,problem,method,options);
+            Y_new = Y;S_new =S;
+
+        case 'Newton'   
+            [x_new,f_new,g_new,H_new,d,alpha] = NewtonStep(x,f,g,H,problem,method,options);
+            Y_new = Y;S_new =S;
+            
+         case 'NewtonW'
+            [x_new,f_new,g_new,H_new,d,alpha] = NewtonStep(x,f,g,H,problem,method,options);
+            Y_new = Y;S_new =S;
+            
+        case 'BFGS'    
             [x_new,f_new,g_new,H_new,d,alpha] = BFGSStep(x,f,g,H,problem,method,options);
-            %fprintf(' %15.5e %15.5e\n',alpha,norm(d,inf));
+            Y_new = Y;S_new =S;
+            
+         case 'BFGSW'  
+            [x_new,f_new,g_new,H_new,d,alpha] = BFGSStep(x,f,g,H,problem,method,options);
             Y_new = Y;S_new =S;
 
         case 'L_BFGS'
-%             if mod(k,10) == 0
-%                 fprintf('%15s %15s %15s %15s %15s\n','Iteration','Func val','Norm Grad','alpha','Norm d')
-%             end
-            %fprintf('%15s %15.5e %15.5e',k,f,norm_g);    
             [x_new,f_new,g_new,H_new,Y_new,S_new,k,d,alpha] = L_BFGSStep(x,f,g,Y,S,m,k,problem,method,options);
-            %fprintf(' %15.5e %15.5e\n',alpha,norm(d,inf));
 
         case 'TRNewtonCG'
-%             if mod(k,10) == 0
-%                 fprintf('%15s %15s %15s %15s %15s\n','Iteration','Func val','Norm Grad','alpha','Norm d')
-%             end
-%             fprintf('%15s %15.5e %15.5e',k,f,norm_g);
             [x_new,f_new,g_new,H_new,TR_radi_new] = TR_NewtonStep(x,f,g,H,TR_radi, problem,method,options);
             Y_new = Y;S_new =S;
-            
 
         case 'TRSR1CG'
-%             if mod(k,10) == 0
-%                 fprintf('%15s %15s %15s %15s %15s\n','Iteration','Func val','Norm Grad','alpha','Norm d')
-%             end
-%             fprintf('%15s %15.5e %15.5e',k,f,norm_g);
             [x_new,f_new,g_new,H_new,TR_radi_new] = TR_SR1Step(x,f,g,H,TR_radi, problem,method,options);
             Y_new = Y;S_new =S;
+            
+        case 'DFP'  
+            [x_new,f_new,g_new,H_new,d,alpha] = DFPStep(x,f,g,H,problem,method,options);
+            Y_new = Y;S_new =S;
+            
+        case 'DFPW'
+            [x_new,f_new,g_new,H_new,d,alpha] = DFPStep(x,f,g,H,problem,method,options);
+            Y_new = Y;S_new =S;
+        
             
         otherwise
             
