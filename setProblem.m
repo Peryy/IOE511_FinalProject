@@ -1,5 +1,5 @@
 % IOE 511/MATH 562, University of Michigan
-% Code written by: Albert S. Berahas
+% Code written by: Minghao Chen
 
 % Function that specifies the problem. Specifically, a way to compute: 
 %    (1) function values; (2) gradients; and, (3) Hessians (if necessary).
@@ -53,9 +53,9 @@ switch problem.name
         problem.compute_g = @rosen_grad;
         problem.compute_H = @rosen_Hess;
 
-    case 'Rosenbrock_100'
+    case 'Rosenbrock_1000'
         
-        problem.x0 = [-1.2;ones(99)];
+        problem.x0 = [-1.2;ones(999,1)];
         problem.n = length(problem.x0);
         problem.compute_f = @rosen_func;
         problem.compute_g = @rosen_grad;

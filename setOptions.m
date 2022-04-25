@@ -20,7 +20,7 @@ end
 % check if max iterations specified
 if ~isfield(options,'max_iterations')
     warning('Maximum iterations not specified!!! Setting to default: 1e2')
-    options.max_iterations = 1e2;
+    options.max_iterations = 1e3;
 end
 
 end
