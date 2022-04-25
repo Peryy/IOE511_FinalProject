@@ -21,6 +21,7 @@ Q = [5 1 0 0.5;
 sigma = 1e4;
 
 % compute function value
-H = eye(4)+sigma*(Q*(x'*Q*x)+(Q*x)*(x'*Q));
+H = eye(4)+sigma*(Q*(x'*Q*x)+2*(Q*x)*(x'*Q));
+%H = eye(4)+sigma*(2*(Q*x)*(x'*Q)+(x'*Q*x)*Q);
 
 end
